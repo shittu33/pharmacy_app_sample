@@ -36,7 +36,16 @@ extension AssetIconExt on String {
     );
   }
 
-  Widget getSvgBlack({color}) {
+  Widget getSvgSize({color}) {
+    return SvgPicture.asset(
+      this,
+      color: color,
+    );
+  }
+
+  Widget getSvgBlack({
+    color,
+  }) {
     return SvgPicture.asset(
       this,
       color: color ?? Colors.black38,

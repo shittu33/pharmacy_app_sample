@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pharmacy/app/Text.dart';
+import 'package:pharmacy/app/text.dart';
 import 'package:pharmacy/app/routes.dart';
 import 'package:pharmacy/app/theme.dart';
+import 'package:pharmacy/models/models.dart';
 import 'package:pharmacy/presentation/screens/medicine_category/medicine_category.dart';
 import 'package:pharmacy/presentation/screens/medicine_list/medicine_list.dart';
 import 'package:pharmacy/presentation/widgets/widget.dart';
@@ -21,12 +22,30 @@ class _MedicineListPageState extends State<MedicineListPage> {
     Navigator.of(context).pushNamed(AppRoutes.medicineCategory);
   }
 
+  void categoryItemHandler(int id) {
+    Navigator.of(context)
+        .pushNamed(AppRoutes.medicineCategoryFilter, arguments: id);
+  }
+
+  searchButtonHandler() {
+    Navigator.of(context).pushNamed(AppRoutes.medicineSearch);
+  }
+
+  void onMedicineTap(MedicineItem medicine){
+    Navigator.of(context)
+        .pushNamed(AppRoutes.medicineView, arguments: medicine);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return PharmacyScaffold(
       AppText.pharmacy,
       appBarAction: AssetsSvg.deliveryIcon,
-      appSearchBar: const SearchInput(),
+      appSearchBar: SearchInput(
+        enabled: false,
+        searchButtonHandler: searchButtonHandler,
+      ),
       locationLabel: const LocationLabel(),
       bottomNavBar: BottomNavigationBar(
         onTap: (index) {},
@@ -102,7 +121,9 @@ class _MedicineListPageState extends State<MedicineListPage> {
                     padding: const EdgeInsets.only(left: AppSizes.appSideGap),
                     itemBuilder: (ctx, index) {
                       var category = state.categories[index];
-                      return MedicineCategoryItem(category: category);
+                      return InkWell(
+                          onTap: () => categoryItemHandler(category.id),
+                          child: MedicineCategoryItem(category: category));
                     },
                     itemCount: state.categories.length,
                   );
@@ -148,8 +169,11 @@ class _MedicineListPageState extends State<MedicineListPage> {
                 delegate: SliverChildBuilderDelegate(
                   (ctx, index) {
                     var medicine = state.medicines[index];
-                    return MedicineGridItem(
-                      medicine: medicine,
+                    return InkWell(
+                      onTap: ()=>onMedicineTap(medicine),
+                      child: MedicineGridItem(
+                        medicine: medicine,
+                      ),
                     );
                   },
                   childCount: state.medicines.length,

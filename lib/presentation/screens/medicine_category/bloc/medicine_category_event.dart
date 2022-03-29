@@ -10,3 +10,12 @@ class CategoryStarted extends CategoryEvent {
   List<Object> get props => [];
 }
 
+class CategorySelected extends CategoryEvent {
+  const CategorySelected(this.category);
+
+  final int category;
+
+  @override
+  List<Object> get props => [category];
+}
+

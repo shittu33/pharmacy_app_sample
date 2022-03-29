@@ -11,49 +11,106 @@ const List<CategoryItem> _categories = [
 ];
 
 const List<MedicineItem> _userSuggestedMedicines = [
-  MedicineItem(1,Assets.imagesParacetamol3,'Paracetamol','Tablet','500mg',350.00),
-  MedicineItem(2,Assets.imagesDoliprane,'Doliprane','Capsule','1000mg',350.00)  ,
-  MedicineItem(3,Assets.imagesParacetamol,'Paracetamol','Tablet','500mg',350.00),
-  MedicineItem(4,Assets.imagesIburofen,'Ibuprofen','Tablet','500mg',200.00),
-  MedicineItem(5,Assets.imagesPanadol,'Panadol','Tablet','500mg',350.00),
-  MedicineItem(6,Assets.imagesIburophen2,'Ibuprofen','Tablet','500mg',400.00),
-  MedicineItem(7,Assets.imagesEmzor,'Emzor Paracetamol','Tablet','500mg',600.00),
+  MedicineItem(
+      1, Assets.imagesParacetamol3, 'Paracetamol', 'Tablet', '500mg', 350.00),
+  MedicineItem(
+      2, Assets.imagesDoliprane, 'Doliprane', 'Capsule', '1000mg', 350.00),
+  MedicineItem(
+      3, Assets.imagesParacetamol, 'Paracetamol', 'Tablet', '500mg', 350.00),
+  MedicineItem(
+      4, Assets.imagesIburofen, 'Ibuprofen', 'Tablet', '500mg', 200.00),
+  MedicineItem(5, Assets.imagesPanadol, 'Panadol', 'Tablet', '500mg', 350.00),
+  MedicineItem(
+      6, Assets.imagesIburophen2, 'Ibuprofen', 'Tablet', '500mg', 400.00),
+  MedicineItem(
+      7, Assets.imagesEmzor, 'Emzor Paracetamol', 'Tablet', '500mg', 600.00),
 ];
 
 const List<MedicineItem> _medicines = [
-    /// 1st category
-  MedicineItem(1,Assets.imagesParacetamol,'Paracetamol','Tablet','500mg',350.00,category: 1),
-  MedicineItem(2,Assets.imagesDoliprane,'Doliprane','Capsule','1000mg',350.00,category: 1)  ,
-  MedicineItem(3,Assets.imagesParacetamol3,'Paracetamol','Tablet','500mg',350.00,category: 1),
-  MedicineItem(4,Assets.imagesIburofen,'Ibuprofen','Tablet','500mg',200.00,category: 1),
-  MedicineItem(5,Assets.imagesParacetamol,'Panadol','Tablet','500mg',350.00,category: 1),
-  MedicineItem(6,Assets.imagesIburophen2,'Ibuprofen','Tablet','500mg',400.00,category: 1),
-  MedicineItem(7,Assets.imagesEmzor,'Emzor Paracetamol','Tablet','500mg',600.00,category: 1),
+  /// 1st category
+  MedicineItem(
+      1, Assets.imagesParacetamol, 'Paracetamol', 'Tablet', '500mg', 350.00,
+      category: 1),
+  MedicineItem(
+      2, Assets.imagesDoliprane, 'Doliprane', 'Capsule', '1000mg', 350.00,
+      category: 1),
+  MedicineItem(
+      3, Assets.imagesParacetamol3, 'Paracetamol', 'Tablet', '500mg', 350.00,
+      category: 1),
+  MedicineItem(4, Assets.imagesIburofen, 'Ibuprofen', 'Tablet', '500mg', 200.00,
+      category: 1),
+  MedicineItem(
+      5, Assets.imagesParacetamol, 'Panadol', 'Tablet', '500mg', 350.00,
+      category: 1),
+  MedicineItem(
+      6, Assets.imagesIburophen2, 'Ibuprofen', 'Tablet', '500mg', 400.00,
+      category: 1),
+  MedicineItem(
+      7, Assets.imagesEmzor, 'Emzor Paracetamol', 'Tablet', '500mg', 600.00,
+      category: 1),
 
   /// 2nd category
-  MedicineItem(2,Assets.imagesDoliprane,'Doliprane','Capsule','1000mg',350.00,category:2)  ,
-  MedicineItem(5,Assets.imagesPanadol,'Panadol','Tablet','500mg',350.00,category: 2),
-  MedicineItem(6,Assets.imagesIburofen,'Ibuprofen','Tablet','500mg',400.00,category: 2),
-  MedicineItem(1,Assets.imagesParacetamol,'Paracetamol','Tablet','500mg',350.00,category:2),
-  MedicineItem(4,Assets.imagesIburophen2,'Ibuprofen','Tablet','500mg',200.00,category: 2),
-  MedicineItem(3,Assets.imagesParacetamol3,'Paracetamol','Tablet','500mg',350.00,category:2),
-  MedicineItem(7,Assets.imagesEmzor,'Emzor Paracetamol','Tablet','500mg',600.00,category:2),
+  MedicineItem(
+      8, Assets.imagesDoliprane, 'Doliprane', 'Capsule', '1000mg', 350.00,
+      category: 2),
+  MedicineItem(5, Assets.imagesPanadol, 'Panadol', 'Tablet', '500mg', 350.00,
+      category: 2),
+  MedicineItem(6, Assets.imagesIburofen, 'Ibuprofen', 'Tablet', '500mg', 400.00,
+      category: 2),
+  MedicineItem(
+      1, Assets.imagesParacetamol, 'Paracetamol', 'Tablet', '500mg', 350.00,
+      category: 2),
+  MedicineItem(
+      4, Assets.imagesIburophen2, 'Ibuprofen', 'Tablet', '500mg', 200.00,
+      category: 2),
+  MedicineItem(
+      3, Assets.imagesParacetamol3, 'Paracetamol', 'Tablet', '500mg', 350.00,
+      category: 2),
+  MedicineItem(
+      7, Assets.imagesEmzor, 'Emzor Paracetamol', 'Tablet', '500mg', 600.00,
+      category: 2),
+
   /// 3rd category
-  MedicineItem(7,Assets.imagesEmzor,'Emzor Paracetamol','Tablet','500mg',600.00,category: 3),
-  MedicineItem(6,Assets.imagesIburofen,'Ibuprofen','Tablet','500mg',400.00,category: 3),
-  MedicineItem(3,Assets.imagesParacetamol,'Paracetamol','Tablet','500mg',350.00,category: 3),
-  MedicineItem(2,Assets.imagesDoliprane,'Doliprane','Capsule','1000mg',350.00,category: 3)  ,
-  MedicineItem(4,Assets.imagesIburophen2,'Ibuprofen','Tablet','500mg',200.00,category: 3),
-  MedicineItem(5,Assets.imagesPanadol,'Panadol','Tablet','500mg',350.00,category: 3),
-  MedicineItem(1,Assets.imagesParacetamol3,'Paracetamol','Tablet','500mg',350.00,category: 3),
+  MedicineItem(
+      7, Assets.imagesEmzor, 'Emzor Paracetamol', 'Tablet', '500mg', 600.00,
+      category: 3),
+  MedicineItem(6, Assets.imagesIburofen, 'Ibuprofen', 'Tablet', '500mg', 400.00,
+      category: 3),
+  MedicineItem(
+      3, Assets.imagesParacetamol, 'Paracetamol', 'Tablet', '500mg', 350.00,
+      category: 3),
+  MedicineItem(
+      2, Assets.imagesDoliprane, 'Doliprane', 'Capsule', '1000mg', 350.00,
+      category: 3),
+  MedicineItem(
+      4, Assets.imagesIburophen2, 'Ibuprofen', 'Tablet', '500mg', 200.00,
+      category: 3),
+  MedicineItem(5, Assets.imagesPanadol, 'Panadol', 'Tablet', '500mg', 350.00,
+      category: 3),
+  MedicineItem(
+      1, Assets.imagesParacetamol3, 'Paracetamol', 'Tablet', '500mg', 350.00,
+      category: 3),
+
   /// 4th category
-  MedicineItem(4,Assets.imagesIburophen2,'Ibuprofen','Tablet','500mg',400.00,category: 4),
-  MedicineItem(2,Assets.imagesDoliprane,'Doliprane','Capsule','1000mg',350.00,category: 4)  ,
-  MedicineItem(6,Assets.imagesIburofen,'Ibuprofen','Tablet','500mg',400.00,category: 4),
-  MedicineItem(1,Assets.imagesParacetamol,'Paracetamol','Tablet','500mg',350.00,category: 4),
-  MedicineItem(5,Assets.imagesPanadol,'Panadol','Tablet','500mg',350.00,category: 4),
-  MedicineItem(3,Assets.imagesParacetamol3,'Paracetamol','Tablet','500mg',350.00,category: 4),
-  MedicineItem(7,Assets.imagesEmzor,'Emzor Paracetamol','Tablet','500mg',600.00,category: 4),
+  MedicineItem(
+      4, Assets.imagesIburophen2, 'Ibuprofen', 'Tablet', '500mg', 400.00,
+      category: 4),
+  MedicineItem(
+      2, Assets.imagesDoliprane, 'Doliprane', 'Capsule', '1000mg', 350.00,
+      category: 4),
+  MedicineItem(6, Assets.imagesIburofen, 'Ibuprofen', 'Tablet', '500mg', 400.00,
+      category: 4),
+  MedicineItem(
+      1, Assets.imagesParacetamol, 'Paracetamol', 'Tablet', '500mg', 350.00,
+      category: 4),
+  MedicineItem(5, Assets.imagesPanadol, 'Panadol', 'Tablet', '500mg', 350.00,
+      category: 4),
+  MedicineItem(
+      3, Assets.imagesParacetamol3, 'Paracetamol', 'Tablet', '500mg', 350.00,
+      category: 4),
+  MedicineItem(
+      7, Assets.imagesEmzor, 'Emzor Paracetamol', 'Tablet', '500mg', 600.00,
+      category: 4),
 ];
 
 class MedicineRepository {
@@ -62,16 +119,32 @@ class MedicineRepository {
   Future<List<CategoryItem>> loadCategory() =>
       Future.delayed(_delay, () => _categories);
 
+  Future<List<CategoryItem>> selectCategory(int categoryId) => Future.delayed(
+      _delay,
+      () => _categories.map((category) {
+            if (categoryId == category.id) {
+              return CategoryItem(
+                  category.id, category.name, category.image, true);
+            } else {
+              return CategoryItem(
+                  category.id, category.name, category.image, false);
+            }
+          }).toList());
+
   Future<List<MedicineItem>> loadMedicines(int categoryId) => Future.delayed(
       _delay,
       () => _medicines
-          .takeWhile((medicine) => medicine.category == categoryId)
+          .where((medicine) {
+        print("ListItem id is ${medicine.category} and event id is ${categoryId}");
+
+        return medicine.category == categoryId;
+          })
           .toList());
 
   Future<List<MedicineItem>> searchMedicines(String query) => Future.delayed(
       _delay,
       () => _medicines
-          .takeWhile((medicine) => medicine.title.contains(query))
+          .where((medicine) => medicine.title.toLowerCase().contains(query.toLowerCase()))
           .toList());
 
   Future<List<MedicineItem>> loadSuggestedMedicines() =>

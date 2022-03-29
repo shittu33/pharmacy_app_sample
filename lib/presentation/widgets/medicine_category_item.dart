@@ -6,13 +6,15 @@ import 'common/assets_image.dart';
 class MedicineCategoryItem extends StatelessWidget {
   const MedicineCategoryItem({
     Key? key,
-    required this.category,
+    required this.category, this.markSelected = false,
   }) : super(key: key);
 
   final CategoryItem category;
+  final bool markSelected;
 
   @override
   Widget build(BuildContext context) {
+    var opacity = 0.65;
     return Container(
       width: 130,
       padding: const EdgeInsets.only(right: AppSizes.gridTilePadding),
@@ -26,7 +28,9 @@ class MedicineCategoryItem extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             Container(
-              color: AppColors.black.withOpacity(0.65),
+              color: category.selected && markSelected
+                  ? AppColors.middleBlue.withOpacity(opacity)
+                  : AppColors.black.withOpacity(opacity),
             ),
             Center(
               child: Text(

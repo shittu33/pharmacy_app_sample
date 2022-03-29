@@ -11,7 +11,7 @@ part 'medicine_list_state.dart';
 class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
   MedicineBloc({required this.medicineRepository}) : super(MedicineLoading()) {
     on<MedicineStarted>(_onStarted);
-    // on<MedicineItemAdded>(_onItemAdded);
+    on<MedicineReloaded>(_onMedicineReloaded);
     // on<MedicineItemRemoved>(_onItemRemoved);
   }
 
@@ -24,6 +24,18 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
       emit(MedicineLoaded(medicines: items));
     } catch (_) {
       emit(MedicineError());
+    }
+  }
+
+  void _onMedicineReloaded(MedicineReloaded event, Emitter<MedicineState> emit) async {
+    final state = this.state;
+    if (state is MedicineLoaded) {
+      try {
+        var newMedicines = await medicineRepository.loadMedicines(event.categoryId);
+        emit(MedicineLoaded(medicines: newMedicines));
+      } catch (_) {
+        emit(MedicineError());
+      }
     }
   }
 

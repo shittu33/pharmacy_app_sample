@@ -119,7 +119,6 @@ class AppTheme {
         color: AppColors.white,
       ),
     ),
-
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedIconTheme: const IconThemeData(color: AppColors.purple),
       unselectedLabelStyle: captionStyle.copyWith(height: 2),
@@ -158,6 +157,16 @@ class AppTheme {
         ),
       ),
     ),
+
+    textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+            primary: AppColors.purple,
+            backgroundColor: AppColors.white,
+            side: BorderSide(color: AppColors.purple,width: 2),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            textStyle: const TextStyle(color: AppColors.purple))),
+
     dialogTheme: DialogTheme(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     ),

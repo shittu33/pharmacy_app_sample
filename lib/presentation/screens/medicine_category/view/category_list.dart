@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pharmacy/app/Text.dart';
+import 'package:pharmacy/app/routes.dart';
+import 'package:pharmacy/app/text.dart';
 import 'package:pharmacy/app/theme.dart';
 import 'package:pharmacy/presentation/screens/medicine_category/medicine_category.dart';
 import 'package:pharmacy/presentation/widgets/widget.dart';
 
-class CategoryListScreen extends StatelessWidget {
-  const CategoryListScreen({Key? key}) : super(key: key);
+class CategoryListPage extends StatefulWidget {
+  const CategoryListPage({Key? key}) : super(key: key);
+
+  @override
+  State<CategoryListPage> createState() => _CategoryListPageState();
+}
+
+class _CategoryListPageState extends State<CategoryListPage> {
+  void onItemSelected(int id) {
+    Navigator.of(context)
+        .pushNamed(AppRoutes.medicineCategoryFilter, arguments: id);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +36,16 @@ class CategoryListScreen extends StatelessWidget {
               padding: const EdgeInsets.only(
                   left: AppSizes.appSideGap,
                   right: AppSizes.appSideGap * 0.5,
-                  top: AppSizes.appSideGap),
+                  top: AppSizes.appTopGap),
               sliver: SliverGrid(
                 delegate: SliverChildBuilderDelegate(
                   (ctx, index) {
-                    var medicine = state.categories[index];
-                    return MedicineCategoryItem(
-                      category: medicine,
+                    var category = state.categories[index];
+                    return InkWell(
+                      onTap: () => onItemSelected(category.id),
+                      child: MedicineCategoryItem(
+                        category: category,
+                      ),
                     );
                   },
                   childCount: state.categories.length,
