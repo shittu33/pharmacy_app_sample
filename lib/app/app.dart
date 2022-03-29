@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           AppRoutes.medicineCategory: (ctx) => const CategoryListPage(),
           AppRoutes.medicineCategoryFilter: (ctx) => const CategoryFilterPage(),
           AppRoutes.medicineSearch: (ctx) => const SearchMedicinePage(),
-          AppRoutes.medicineView: (ctx) => const SearchMedicinePage(),
+          AppRoutes.medicineView: (ctx) => const MedicineViewPage(),
         },
         debugShowCheckedModeBanner: false,
         initialRoute: AppRoutes.medicineList,

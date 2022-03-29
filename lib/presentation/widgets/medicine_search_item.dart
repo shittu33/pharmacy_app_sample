@@ -79,22 +79,12 @@ class MedicineSearchItem extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(right: AppSizes.gridTilePadding),
-                  child: Material(
-                    color: AppColors.purple.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(4),
-                    child: const Padding(
-                      padding: EdgeInsets.all(2.0),
-                      child: Icon(
-                        Icons.favorite_border,
-                        color: AppColors.purple,
-                      ),
-                    ),
-                  ),
+                  child: HeartIcon(),
                 )
               ],
             )),
             const SizedBox(
-              height: 4,
+              height: 6,
             ),
             Expanded(
               child: SizedBox(
@@ -103,6 +93,13 @@ class MedicineSearchItem extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: TextButton(
                     onPressed: () {},
+                    style: TextButton.styleFrom(
+                        primary: AppColors.purple,
+                        backgroundColor: AppColors.white,
+                        side: BorderSide(color: AppColors.purple, width: 1.5),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        textStyle: const TextStyle(color: AppColors.purple)),
                     child: Text('ADD TO CART',
                         style: Theme.of(context)
                             .textTheme
