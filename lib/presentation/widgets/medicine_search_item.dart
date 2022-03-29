@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacy/app/theme.dart';
 import 'package:pharmacy/models/models.dart';
+import 'package:pharmacy/presentation/widgets/widget.dart';
 import 'common/assets_image.dart';
 
 class MedicineSearchItem extends StatelessWidget {
@@ -11,6 +12,9 @@ class MedicineSearchItem extends StatelessWidget {
 
   final MedicineItem medicine;
 
+  void addToCartHandler() {
+
+  }
   @override
   Widget build(BuildContext context) {
     var radius = const Radius.circular(AppSizes.categoryCardRadius);
@@ -76,9 +80,9 @@ class MedicineSearchItem extends StatelessWidget {
                   ),
                 ),
                 // Text('dsds'),
-                Padding(
+                const Padding(
                   padding:
-                      const EdgeInsets.only(right: AppSizes.gridTilePadding),
+                      EdgeInsets.only(right: AppSizes.gridTilePadding),
                   child: HeartIcon(),
                 )
               ],
@@ -92,11 +96,11 @@ class MedicineSearchItem extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: addToCartHandler,
                     style: TextButton.styleFrom(
                         primary: AppColors.purple,
                         backgroundColor: AppColors.white,
-                        side: BorderSide(color: AppColors.purple, width: 1.5),
+                        side: const BorderSide(color: AppColors.purple, width: 1.5),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                         textStyle: const TextStyle(color: AppColors.purple)),
