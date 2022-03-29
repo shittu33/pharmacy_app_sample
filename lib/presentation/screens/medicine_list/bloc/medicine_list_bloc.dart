@@ -38,34 +38,4 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
       }
     }
   }
-
-  // void _onItemAdded(CartItemAdded event, Emitter<CartState> emit) async {
-  //   final state = this.state;
-  //   if (state is CartLoaded) {
-  //     try {
-  //       shoppingRepository.addItemToCart(event.item);
-  //       emit(CartLoaded(cart: Cart(items: [...state.cart.items, event.item])));
-  //     } catch (_) {
-  //       emit(CartError());
-  //     }
-  //   }
-  // }
-  //
-  // void _onItemRemoved(CartItemRemoved event, Emitter<CartState> emit) {
-  //   final state = this.state;
-  //   if (state is CartLoaded) {
-  //     try {
-  //       shoppingRepository.removeItemFromCart(event.item);
-  //       emit(
-  //         CartLoaded(
-  //           cart: Cart(
-  //             items: [...state.cart.items]..remove(event.item),
-  //           ),
-  //         ),
-  //       );
-  //     } catch (_) {
-  //       emit(CartError());
-  //     }
-  //   }
-  // }
 }

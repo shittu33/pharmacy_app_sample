@@ -8,41 +8,49 @@ part 'cart_event.dart';
 
 part 'cart_state.dart';
 
-class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
-  CategoryBloc({required this.medicineRepository}) : super(CategoryLoading()) {
-    on<CategoryStarted>(_onStarted);
-    on<CategorySelected>(_onCategorySelected);
+class CartBloc extends Bloc<CartEvent, CartState> {
+  CartBloc({required this.medicineRepository}) : super(CartLoading()) {
+    on<CartStarted>(_onStarted);
+    on<CartItemAdded>(_onItemAdded);
+    on<CartItemRemoved>(_onItemRemoved);
   }
 
   final MedicineRepository medicineRepository;
 
-  void _onStarted(CategoryStarted event, Emitter<CategoryState> emit) async {
-    emit(CategoryLoading());
+  void _onStarted(CartStarted event, Emitter<CartState> emit) async {
+    emit(CartLoading());
     try {
-      final items = await medicineRepository.loadCategory();
-      emit(CategoryLoaded(categories: items, selectedCategory: items[0]));
+      final items = await medicineRepository.loadCarts();
+      emit(CartLoaded(carts: items));
     } catch (_) {
-      emit(CategoryError());
+      emit(CartError());
     }
   }
 
-  void _onCategorySelected(
-      CategorySelected event, Emitter<CategoryState> emit) async {
+  void _onItemAdded(CartItemAdded event, Emitter<CartState> emit) async {
     final state = this.state;
-    if (state is CategoryLoaded) {
+    if (state is CartLoaded) {
       try {
-        var newCategories =
-            await medicineRepository.selectCategory(event.category);
-
-        var selectedCategories = newCategories.where((value) {
-          return value.id == event.category;
-        }).toList();
-
-        emit(CategoryLoaded(
-            categories: newCategories,
-            selectedCategory: selectedCategories[0]));
+        medicineRepository.addItemToCart(event.item);
+        emit(CartLoaded(carts: [...state.carts, event.item]));
       } catch (_) {
-        emit(CategoryError());
+        emit(CartError());
+      }
+    }
+  }
+
+  void _onItemRemoved(CartItemRemoved event, Emitter<CartState> emit) {
+    final state = this.state;
+    if (state is CartLoaded) {
+      try {
+        medicineRepository.removeItemFromCart(event.item);
+        emit(
+          CartLoaded(
+            carts: [...state.carts]..remove(event.item),
+          ),
+        );
+      } catch (_) {
+        emit(CartError());
       }
     }
   }

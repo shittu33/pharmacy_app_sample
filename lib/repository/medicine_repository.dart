@@ -113,6 +113,8 @@ const List<MedicineItem> _medicines = [
       category: 4),
 ];
 
+final _carts = <CartItem>[];
+
 class MedicineRepository {
   // final _category = <CategoryItem>[];
 
@@ -133,24 +135,29 @@ class MedicineRepository {
 
   Future<List<MedicineItem>> loadMedicines(int categoryId) => Future.delayed(
       _delay,
-      () => _medicines
-          .where((medicine) {
-        print("ListItem id is ${medicine.category} and event id is ${categoryId}");
+      () => _medicines.where((medicine) {
+            print(
+                "ListItem id is ${medicine.category} and event id is ${categoryId}");
 
-        return medicine.category == categoryId;
-          })
-          .toList());
+            return medicine.category == categoryId;
+          }).toList());
 
   Future<List<MedicineItem>> searchMedicines(String query) => Future.delayed(
       _delay,
       () => _medicines
-          .where((medicine) => medicine.title.toLowerCase().contains(query.toLowerCase()))
+          .where((medicine) =>
+              medicine.title.toLowerCase().contains(query.toLowerCase()))
           .toList());
 
   Future<List<MedicineItem>> loadSuggestedMedicines() =>
       Future.delayed(_delay, () => _userSuggestedMedicines);
 
-// void addItemToCart(Item item) => _items.add(item);
+  void addItemToCart(CartItem item) {
+    _carts.add(item);
+  }
 
-// void removeItemFromCart(Item item) => _items.remove(item);
+  void removeItemFromCart(CartItem item) => _carts.remove(item);
+
+  Future<List<CartItem>> loadCarts() =>
+      Future.delayed(_delay, () => _carts);
 }

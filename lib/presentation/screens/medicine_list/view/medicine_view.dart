@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:pharmacy/app/text.dart';
 import 'package:pharmacy/app/theme.dart';
 import 'package:pharmacy/models/models.dart';
+import 'package:pharmacy/presentation/screens/cart/cart.dart';
 import 'package:pharmacy/presentation/widgets/widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 class MedicineViewPage extends StatefulWidget {
   const MedicineViewPage({Key? key}) : super(key: key);
@@ -17,7 +20,13 @@ class _MedicineViewPageState extends State<MedicineViewPage> {
     var medicine = ModalRoute.of(context)?.settings.arguments as MedicineItem;
 
     void addToCartHandler() {
-
+      context.read<CartBloc>().add(CartItemAdded(CartItem(
+          medicine.id,
+          medicine.image,
+          medicine.title,
+          medicine.type,
+          medicine.size,
+          medicine.price)));
     }
 
     return PharmacyScaffold(
@@ -28,7 +37,7 @@ class _MedicineViewPageState extends State<MedicineViewPage> {
         child: Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: SizedBox(
-            width: MediaQuery.of(context).size.width*0.8,
+            width: MediaQuery.of(context).size.width * 0.8,
             child: TextButton.icon(
               onPressed: addToCartHandler,
               icon: AssetsSvg.catIcon,
@@ -169,5 +178,4 @@ class _MedicineViewPageState extends State<MedicineViewPage> {
       ],
     );
   }
-
 }

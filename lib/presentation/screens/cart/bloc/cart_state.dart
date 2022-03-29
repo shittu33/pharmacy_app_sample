@@ -1,27 +1,26 @@
 part of 'cart_bloc.dart';
 
 @immutable
-abstract class CategoryState extends Equatable {
-  const CategoryState();
+abstract class CartState extends Equatable {
+  const CartState();
 }
 
-class CategoryLoading extends CategoryState {
+class CartLoading extends CartState {
   @override
   List<Object> get props => [];
 }
 
-class CategoryLoaded extends CategoryState {
-  const CategoryLoaded(
-      {this.categories = const [], required this.selectedCategory});
+class CartLoaded extends CartState {
+  const CartLoaded(
+      {this.carts = const []});
 
-  final List<CategoryItem> categories;
-  final CategoryItem selectedCategory;
+  final List<CartItem> carts;
 
   @override
-  List<Object> get props => [categories];
+  List<Object> get props => [carts];
 }
 
-class CategoryError extends CategoryState {
+class CartError extends CartState {
   @override
   List<Object> get props => [];
 }

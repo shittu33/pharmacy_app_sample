@@ -5,17 +5,18 @@ import 'package:pharmacy/app/text.dart';
 import 'package:pharmacy/app/routes.dart';
 import 'package:pharmacy/app/theme.dart';
 import 'package:pharmacy/models/models.dart';
+import 'package:pharmacy/presentation/screens/cart/cart.dart';
 import 'package:pharmacy/presentation/screens/medicine_search/bloc/medicine_search_bloc.dart';
 import 'package:pharmacy/presentation/widgets/widget.dart';
 
-class SearchMedicinePage extends StatefulWidget {
-  const SearchMedicinePage({Key? key}) : super(key: key);
+class CartPage extends StatefulWidget {
+  const CartPage({Key? key}) : super(key: key);
 
   @override
-  _SearchMedicinePageState createState() => _SearchMedicinePageState();
+  _CartPageState createState() => _CartPageState();
 }
 
-class _SearchMedicinePageState extends State<SearchMedicinePage> {
+class _CartPageState extends State<CartPage> {
   void viewAllHandler() {
     Navigator.of(context).pushNamed(AppRoutes.medicineCategory);
   }
@@ -44,7 +45,7 @@ class _SearchMedicinePageState extends State<SearchMedicinePage> {
   Widget build(BuildContext context) {
     return PharmacyScaffold(
       AppText.pharmacy,
-      appBarAction: AssetsSvg.deliveryIcon,
+      // appBarAction: AssetsSvg.deliveryIcon,
       appSearchBar: Row(
         children: [
           Expanded(
@@ -56,16 +57,41 @@ class _SearchMedicinePageState extends State<SearchMedicinePage> {
           )
         ],
       ),
-      locationLabel: const LocationLabel(),
-      floatingButton: const FloatingActionChild(),
+      floatingButton: Align(
+        alignment: FractionalOffset.bottomCenter,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width*0.9,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Total: ₦1650.00"),
+                TextButton.icon(
+                  onPressed: (){},
+                  icon: AssetsSvg.catIcon,
+                  label: Text('CHECKOUT'),
+                  style: TextButton.styleFrom(
+                      primary: AppColors.white,
+                      backgroundColor: AppColors.purple,
+                      side: const BorderSide(color: AppColors.purple, width: 1.5),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      textStyle: const TextStyle(color: AppColors.white)),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
       bodySlivers: [
-        BlocBuilder<MedicineSearchBloc, MedicineSearchState>(
+        BlocBuilder<CartBloc, CartState>(
             builder: (context, state) {
-          if (state is MedicineSearchLoading) {
+          if (state is CartLoading) {
             return const SliverToBoxAdapter(
                 child: Center(child: CircularProgressIndicator()));
           }
-          if (state is MedicineSearchLoaded) {
+          if (state is CartLoaded) {
             // if (state.medicines.isEmpty) {
             //   return Center(child: Text('dshjdsjhdjshdshj'));
             // }
@@ -75,24 +101,18 @@ class _SearchMedicinePageState extends State<SearchMedicinePage> {
                 right: AppSizes.appSideGap * 0.8,
                 top: AppSizes.appSideGap,
               ),
-              sliver: SliverGrid(
+              sliver: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (ctx, index) {
-                    var medicine = state.medicines[index];
+                    var medicine = state.carts[index];
                     return InkWell(
-                      onTap: () => onMedicineTap(medicine),
+                      // onTap: () => onMedicineTap(medicine),
                       child: MedicineSearchItem(
                         medicine: medicine,
                       ),
                     );
                   },
-                  childCount: state.medicines.length,
-                ),
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 250.0,
-                  mainAxisSpacing: 24,
-                  crossAxisSpacing: 16,
-                  childAspectRatio: 0.6,
+                  childCount: state.carts.length,
                 ),
               ),
             );

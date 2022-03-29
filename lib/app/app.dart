@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmacy/app/routes.dart';
 import 'package:pharmacy/app/theme.dart';
+import 'package:pharmacy/presentation/screens/cart/cart.dart';
 import 'package:pharmacy/presentation/screens/medicine_category/medicine_category.dart';
 import 'package:pharmacy/presentation/screens/medicine_list/medicine_list.dart';
 import 'package:pharmacy/presentation/screens/medicine_search/medicine_search.dart';
@@ -31,6 +32,11 @@ class MyApp extends StatelessWidget {
             medicineRepository: medicineRepository,
           )..add(MedicineSearchStarted()),
         ),
+        BlocProvider(
+          create: (_) => CartBloc(
+            medicineRepository: medicineRepository,
+          )..add(CartStarted()),
+        ),
       ],
       child: MaterialApp(
         title: 'Pharmacy',
@@ -40,6 +46,7 @@ class MyApp extends StatelessWidget {
           AppRoutes.medicineCategoryFilter: (ctx) => const CategoryFilterPage(),
           AppRoutes.medicineSearch: (ctx) => const SearchMedicinePage(),
           AppRoutes.medicineView: (ctx) => const MedicineViewPage(),
+          AppRoutes.medicineCart: (ctx) => const CartPage(),
         },
         debugShowCheckedModeBanner: false,
         initialRoute: AppRoutes.medicineList,

@@ -1,21 +1,28 @@
 part of 'cart_bloc.dart';
 
 @immutable
-abstract class CategoryEvent extends Equatable {
-  const CategoryEvent();
+abstract class CartEvent extends Equatable {
+  const CartEvent();
 }
 
-class CategoryStarted extends CategoryEvent {
+class CartStarted extends CartEvent {
   @override
   List<Object> get props => [];
 }
+class CartItemAdded extends CartEvent {
+  const CartItemAdded(this.item);
 
-class CategorySelected extends CategoryEvent {
-  const CategorySelected(this.category);
-
-  final int category;
+  final CartItem item;
 
   @override
-  List<Object> get props => [category];
+  List<Object> get props => [item];
 }
 
+class CartItemRemoved extends CartEvent {
+  const CartItemRemoved(this.item);
+
+  final CartItem item;
+
+  @override
+  List<Object> get props => [item];
+}
