@@ -105,13 +105,11 @@ class AppTheme {
           fontWeight: FontWeight.w600,
           color: AppColors.darkGray,
           letterSpacing: 1.1
-          // height: 16.5,
           ),
       headline4: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.bold,
         color: AppColors.white,
-        // height: 16.5,
       ),
       button: const TextStyle(
         fontSize: 15,

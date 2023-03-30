@@ -5,6 +5,7 @@ import 'package:pharmacy/app/text.dart';
 import 'package:pharmacy/app/routes.dart';
 import 'package:pharmacy/app/theme.dart';
 import 'package:pharmacy/models/models.dart';
+import 'package:pharmacy/presentation/screens/cart/cart.dart';
 import 'package:pharmacy/presentation/screens/medicine_search/bloc/medicine_search_bloc.dart';
 import 'package:pharmacy/presentation/widgets/widget.dart';
 
@@ -30,6 +31,8 @@ class _SearchMedicinePageState extends State<SearchMedicinePage> {
   }
 
   void onMedicineTap(MedicineItem medicine) {
+    // context.read<MedicineSearchBloc>().add(MedicineSearch(medicine.title));
+
     Navigator.of(context)
         .pushNamed(AppRoutes.medicineView, arguments: medicine);
   }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy/app/routes.dart';
 import 'package:pharmacy/app/text.dart';
 import 'package:pharmacy/app/theme.dart';
 import 'package:pharmacy/models/models.dart';
 import 'package:pharmacy/presentation/screens/cart/cart.dart';
 import 'package:pharmacy/presentation/widgets/widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 class MedicineViewPage extends StatefulWidget {
   const MedicineViewPage({Key? key}) : super(key: key);
@@ -27,7 +27,12 @@ class _MedicineViewPageState extends State<MedicineViewPage> {
           medicine.type,
           medicine.size,
           medicine.price)));
+
+      Navigator.of(context).pushNamed(AppRoutes.medicineCart);
     }
+
+    print(
+        context.watch<CartBloc>().medicineRepository.carts.map((e) => e.title));
 
     return PharmacyScaffold(
       AppText.category,

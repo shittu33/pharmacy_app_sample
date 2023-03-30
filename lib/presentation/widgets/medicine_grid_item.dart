@@ -23,7 +23,6 @@ class MedicineGridItem extends StatelessWidget {
         child: Flex(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
-          // mainAxisSize: MainAxisSize.min,
           direction: Axis.vertical,
           children: [
             SizedBox(
@@ -51,7 +50,7 @@ class MedicineGridItem extends StatelessWidget {
               padding: const EdgeInsets.only(left: AppSizes.gridTilePadding),
               child: Text.rich(
                 TextSpan(text: medicine.type, children: [
-                  TextSpan(text: '・'),
+                  const TextSpan(text: '・'),
                   TextSpan(text: medicine.size)
                 ]),
                 style: Theme.of(context)

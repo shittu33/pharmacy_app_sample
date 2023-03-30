@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmacy/app/routes.dart';
 import 'package:pharmacy/app/text.dart';
 import 'package:pharmacy/app/theme.dart';
+import 'package:pharmacy/models/models.dart';
 import 'package:pharmacy/presentation/screens/medicine_category/medicine_category.dart';
 import 'package:pharmacy/presentation/screens/medicine_list/medicine_list.dart';
 import 'package:pharmacy/presentation/widgets/widget.dart';
@@ -24,8 +25,9 @@ class _CategoryFilterPageState extends State<CategoryFilterPage> {
     Navigator.of(context).pushNamed(AppRoutes.medicineCategory);
   }
 
-  void medicineItemHandler() {
-    Navigator.of(context).pushNamed(AppRoutes.medicineCategory);
+  void onMedicineTap(MedicineItem medicine) {
+    Navigator.of(context)
+        .pushNamed(AppRoutes.medicineView, arguments: medicine);
   }
 
   void categoryItemHandler(int id) {
@@ -143,8 +145,11 @@ class _CategoryFilterPageState extends State<CategoryFilterPage> {
                 delegate: SliverChildBuilderDelegate(
                   (ctx, index) {
                     var medicine = state.medicines[index];
-                    return MedicineGridItem(
-                      medicine: medicine,
+                    return InkWell(
+                      onTap: () => onMedicineTap(medicine),
+                      child: MedicineGridItem(
+                        medicine: medicine,
+                      ),
                     );
                   },
                   childCount: state.medicines.length,

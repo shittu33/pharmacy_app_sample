@@ -31,11 +31,10 @@ class _MedicineListPageState extends State<MedicineListPage> {
     Navigator.of(context).pushNamed(AppRoutes.medicineSearch);
   }
 
-  void onMedicineTap(MedicineItem medicine){
+  void onMedicineTap(MedicineItem medicine) {
     Navigator.of(context)
         .pushNamed(AppRoutes.medicineView, arguments: medicine);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +169,7 @@ class _MedicineListPageState extends State<MedicineListPage> {
                   (ctx, index) {
                     var medicine = state.medicines[index];
                     return InkWell(
-                      onTap: ()=>onMedicineTap(medicine),
+                      onTap: () => onMedicineTap(medicine),
                       child: MedicineGridItem(
                         medicine: medicine,
                       ),
@@ -193,5 +192,4 @@ class _MedicineListPageState extends State<MedicineListPage> {
       ],
     );
   }
-
 }

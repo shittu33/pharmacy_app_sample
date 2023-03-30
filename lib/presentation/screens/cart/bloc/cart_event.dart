@@ -21,7 +21,7 @@ class CartItemAdded extends CartEvent {
 class CartItemRemoved extends CartEvent {
   const CartItemRemoved(this.item);
 
-  final CartItem item;
+  final int item;
 
   @override
   List<Object> get props => [item];

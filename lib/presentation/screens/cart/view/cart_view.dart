@@ -44,19 +44,8 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return PharmacyScaffold(
-      AppText.pharmacy,
+      AppText.cart,
       // appBarAction: AssetsSvg.deliveryIcon,
-      appSearchBar: Row(
-        children: [
-          Expanded(
-              child: SearchInput(
-            onSearchChanged: onSearchHandler,
-          )),
-          const SizedBox(
-            width: AppSizes.appSideGap * 1.9,
-          )
-        ],
-      ),
       floatingButton: Align(
         alignment: FractionalOffset.bottomCenter,
         child: Padding(
@@ -67,17 +56,29 @@ class _CartPageState extends State<CartPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("Total: ₦1650.00"),
-                TextButton.icon(
-                  onPressed: (){},
-                  icon: AssetsSvg.catIcon,
-                  label: Text('CHECKOUT'),
-                  style: TextButton.styleFrom(
-                      primary: AppColors.white,
-                      backgroundColor: AppColors.purple,
-                      side: const BorderSide(color: AppColors.purple, width: 1.5),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      textStyle: const TextStyle(color: AppColors.white)),
+                Text.rich(
+                  TextSpan(text: "Total:", children: [
+                    TextSpan(text: '# ${context.watch<CartBloc>().medicineRepository.carts}')
+                  ]),
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle2
+                      ?.copyWith(color: AppColors.darkGray),
+                ),
+                SizedBox(width: 32,),
+                Expanded(
+                  child: TextButton.icon(
+                    onPressed: (){},
+                    icon: AssetsSvg.catIcon,
+                    label: Text('CHECKOUT'),
+                    style: TextButton.styleFrom(
+                        primary: AppColors.white,
+                        backgroundColor: AppColors.purple,
+                        side: const BorderSide(color: AppColors.purple, width: 1.5),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        textStyle: const TextStyle(color: AppColors.white)),
+                  ),
                 ),
               ],
             ),
@@ -92,9 +93,7 @@ class _CartPageState extends State<CartPage> {
                 child: Center(child: CircularProgressIndicator()));
           }
           if (state is CartLoaded) {
-            // if (state.medicines.isEmpty) {
-            //   return Center(child: Text('dshjdsjhdjshdshj'));
-            // }
+
             return SliverPadding(
               padding: const EdgeInsets.only(
                 left: AppSizes.appSideGap,
@@ -102,13 +101,14 @@ class _CartPageState extends State<CartPage> {
                 top: AppSizes.appSideGap,
               ),
               sliver: SliverList(
+                // delegate: SliverChildBuilderDelegate(
                 delegate: SliverChildBuilderDelegate(
                   (ctx, index) {
-                    var medicine = state.carts[index];
+                    var carts = state.carts[index];
                     return InkWell(
                       // onTap: () => onMedicineTap(medicine),
-                      child: MedicineSearchItem(
-                        medicine: medicine,
+                      child: CartListItem(
+                        item: carts,
                       ),
                     );
                   },

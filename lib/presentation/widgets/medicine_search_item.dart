@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy/app/routes.dart';
 import 'package:pharmacy/app/theme.dart';
 import 'package:pharmacy/models/models.dart';
+import 'package:pharmacy/presentation/screens/cart/cart.dart';
 import 'package:pharmacy/presentation/widgets/widget.dart';
-import 'common/assets_image.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MedicineSearchItem extends StatelessWidget {
   const MedicineSearchItem({
@@ -12,12 +14,23 @@ class MedicineSearchItem extends StatelessWidget {
 
   final MedicineItem medicine;
 
-  void addToCartHandler() {
 
-  }
   @override
   Widget build(BuildContext context) {
     var radius = const Radius.circular(AppSizes.categoryCardRadius);
+
+    void addToCartHandler() {
+      context.read<CartBloc>().add(CartItemAdded(CartItem(
+          medicine.id,
+          medicine.image,
+          medicine.title,
+          medicine.type,
+          medicine.size,
+          medicine.price)));
+
+      Navigator.of(context).pushNamed(AppRoutes.medicineCart);
+
+    }
 
     return SizedBox(
       width: 200,
@@ -81,8 +94,7 @@ class MedicineSearchItem extends StatelessWidget {
                 ),
                 // Text('dsds'),
                 const Padding(
-                  padding:
-                      EdgeInsets.only(right: AppSizes.gridTilePadding),
+                  padding: EdgeInsets.only(right: AppSizes.gridTilePadding),
                   child: HeartIcon(),
                 )
               ],
@@ -100,7 +112,8 @@ class MedicineSearchItem extends StatelessWidget {
                     style: TextButton.styleFrom(
                         primary: AppColors.purple,
                         backgroundColor: AppColors.white,
-                        side: const BorderSide(color: AppColors.purple, width: 1.5),
+                        side:
+                            const BorderSide(color: AppColors.purple, width: 1),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                         textStyle: const TextStyle(color: AppColors.purple)),

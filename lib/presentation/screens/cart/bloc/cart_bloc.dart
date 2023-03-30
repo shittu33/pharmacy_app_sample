@@ -46,7 +46,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         medicineRepository.removeItemFromCart(event.item);
         emit(
           CartLoaded(
-            carts: [...state.carts]..remove(event.item),
+            carts: [...state.carts]..removeWhere((item) => event.item == item.id),
           ),
         );
       } catch (_) {

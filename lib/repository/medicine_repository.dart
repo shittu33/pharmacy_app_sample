@@ -113,10 +113,8 @@ const List<MedicineItem> _medicines = [
       category: 4),
 ];
 
-final _carts = <CartItem>[];
-
 class MedicineRepository {
-  // final _category = <CategoryItem>[];
+  var carts = <CartItem>[];
 
   Future<List<CategoryItem>> loadCategory() =>
       Future.delayed(_delay, () => _categories);
@@ -153,11 +151,15 @@ class MedicineRepository {
       Future.delayed(_delay, () => _userSuggestedMedicines);
 
   void addItemToCart(CartItem item) {
-    _carts.add(item);
+    carts.add(item);
   }
 
-  void removeItemFromCart(CartItem item) => _carts.remove(item);
+  void removeItemFromCart(int id) {
+    carts = carts.where((val) {
+      print('id is ${val.id} and new id is $id');
+      return val.id != id;
+    }).toList();
+  }
 
-  Future<List<CartItem>> loadCarts() =>
-      Future.delayed(_delay, () => _carts);
+  Future<List<CartItem>> loadCarts() => Future.delayed(_delay, () => carts);
 }

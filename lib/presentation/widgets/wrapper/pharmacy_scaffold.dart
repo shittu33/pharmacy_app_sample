@@ -27,6 +27,7 @@ class PharmacyScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     var expandedHeight =
         MediaQuery.of(context).size.height * AppSizes.appBarExpandedRatio;
+
     const appBarRadius =
         BorderRadius.vertical(bottom: Radius.circular(AppSizes.appBarRadius));
     return Scaffold(
@@ -41,7 +42,7 @@ class PharmacyScaffold extends StatelessWidget {
                 appSearchBar == null ? expandedHeight * 0.2 : expandedHeight,
             collapsedHeight: appSearchBar == null
                 ? expandedHeight * 0.5
-                : expandedHeight * 0.9,
+                : expandedHeight * 0.99,
             leading: bottomNavBar == null
                 ? Padding(
                     padding: const EdgeInsets.only(left: 8.0),
